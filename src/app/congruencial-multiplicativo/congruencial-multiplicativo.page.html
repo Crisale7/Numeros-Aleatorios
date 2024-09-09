@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/home"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Congruencial Multiplicativo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="container">
+    <ion-item>
+      <ion-label position="stacked">X0 (Semilla):</ion-label>
+      <ion-input [(ngModel)]="seed" type="number" placeholder="Ingrese la semilla"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">k:</ion-label>
+      <ion-input [(ngModel)]="k" type="number" placeholder="Ingrese el valor de k"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">g:</ion-label>
+      <ion-input [(ngModel)]="g" type="number" placeholder="Ingrese el valor de g"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label position="stacked">Números a generar:</ion-label>
+      <ion-input [(ngModel)]="numToGenerate" type="number" placeholder="Ingrese la cantidad de números"></ion-input>
+    </ion-item>
+
+    <!-- Selección de la fórmula para 'a' -->
+    <ion-item>
+      <ion-label>Selecciona la fórmula para 'a':</ion-label>
+      <ion-radio-group [(ngModel)]="formulaOption">
+        <ion-radio value="option1">a = 3 + 8k</ion-radio>
+        <ion-radio value="option2">a = 5 + 8k</ion-radio>
+      </ion-radio-group>
+    </ion-item>
+
+    <!-- Toggle para mostrar decimales completos -->
+    <ion-item>
+      <ion-label>Mostrar decimales completos</ion-label>
+      <ion-toggle [(ngModel)]="showFullDecimals"></ion-toggle>
+    </ion-item>
+
+    <ion-button expand="full" (click)="generateNumbers()">Generar números</ion-button>
+
+    <ion-list *ngIf="results.length > 0">
+      <ion-item *ngFor="let result of results; let i = index">
+        <h2>Número aleatorio {{ i + 1 }}: 
+          <ng-container *ngIf="showFullDecimals; else rounded">
+            {{ result.fullRi }}
+          </ng-container>
+          <ng-template #rounded>
+            {{ result.roundedRi }}
+          </ng-template>
+        </h2>
+      </ion-item>
+    </ion-list>
+  </div>
+</ion-content>

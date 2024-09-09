@@ -1,0 +1,64 @@
+ion-content {
+  --background: none;
+  position: relative;
+  background-image: url('/assets/img/glitter-golden-bokeh-lights-scaled.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.background-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 100vh;
+  position: relative;
+  z-index: 2;
+}
+
+.box {
+  width: 150px;
+  height: 150px;
+  margin: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #ff8a00, #e52e71);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  color: white;
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  border-radius: 15px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: float 3s ease-in-out infinite; /* Animación de flotación */
+}
+
+.box:hover {
+  animation: none; /* Pausa la animación al hacer hover */
+  transform: translateY(-15px); /* Eleva el cuadro más que en la animación normal */
+  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4); /* Más sombra al elevarse */
+}
+
+/* Animación de flotación */
+@keyframes float {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
