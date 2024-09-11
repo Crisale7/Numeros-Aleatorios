@@ -1,3 +1,18 @@
+ion-header {
+  --background: rgba(0, 0, 0, 0.5); /* Fondo oscuro traslúcido */
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+  text-align: center;
+  text-transform: uppercase;
+  background: -webkit-linear-gradient(45deg, #ff8a00, #e52e71); /* Degradado en el texto */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent; /* Hace que el texto tenga un degradado */
+}
+
 ion-content {
   --background: none;
   position: relative;
@@ -7,14 +22,6 @@ ion-content {
   background-attachment: fixed;
 }
 
-.background-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  z-index: 1;
-}
 
 .container {
   display: flex;
@@ -27,27 +34,29 @@ ion-content {
 }
 
 .box {
-  width: 150px;
-  height: 150px;
-  margin: 15px;
+  width: 160px; /* Tamaño ligeramente mayor */
+  height: 160px;
+  margin: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-  background: linear-gradient(135deg, #ff8a00, #e52e71);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  background: linear-gradient(145deg, #ff8a00, #e52e71);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4); /* Sombra más profunda */
   color: white;
   font-size: 18px;
   font-weight: bold;
   text-align: center;
-  border-radius: 15px;
+  border-radius: 25px; /* Bordes más redondeados */
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  animation: float 3s ease-in-out infinite; /* Animación de flotación */
+  animation: float 4s ease-in-out infinite; /* Animación más suave y lenta */
+  cursor: pointer; /* Muestra el cursor de clic */
+  border: 2px solid rgba(255, 255, 255, 0.3); /* Borde ligero alrededor de los botones */
 }
 
 .box:hover {
-  animation: none; /* Pausa la animación al hacer hover */
-  transform: translateY(-15px); /* Eleva el cuadro más que en la animación normal */
-  box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4); /* Más sombra al elevarse */
+  animation: none;
+  transform: translateY(-15px);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.5); /* Aumenta la sombra en hover */
 }
 
 /* Animación de flotación */

@@ -17,14 +17,22 @@ export class ProductosMediosPage {
 
   constructor(private alertController: AlertController) {}
 
+  isSeedX0Invalid(): boolean {
+    return this.seedX0 === undefined || !Number.isInteger(this.seedX0) || this.seedX0.toString().length < 2;
+  }
+
+  isSeedX1Invalid(): boolean {
+    return this.seedX1 === undefined || !Number.isInteger(this.seedX1) || this.seedX1.toString().length < 2;
+  }
+
   generateNumbers() {
-    if (this.seedX0 === undefined || this.seedX1 === undefined || this.numToGenerate === undefined || this.numToGenerate <= 0) {
+    if (this.isSeedX0Invalid() || this.isSeedX1Invalid() || this.numToGenerate === undefined || this.numToGenerate <= 0) {
       this.showAlert('Por favor, ingresa semillas válidas y una cantidad positiva de números.');
       return;
     }
 
     this.results = [];
-    this.carga(this.seedX0, this.seedX1, this.seedX0.toString().length, 1, this.numToGenerate);
+    this.carga(this.seedX0!, this.seedX1!, this.seedX0!.toString().length, 1, this.numToGenerate);
   }
 
   carga(seedX0: number, seedX1: number, dig: number, numeral: number, stop: number) {
@@ -36,10 +44,9 @@ export class ProductosMediosPage {
     const middle = parseInt(this.calmed(product, dig), 10);
     const decimal = middle / Math.pow(10, dig);
 
-    // Verificar si el número ya ha sido generado
     if (this.results.some(result => result.middle === middle)) {
       this.showAlert('Se ha generado un número repetido, la secuencia se detiene.');
-      return;  // Detenemos la generación si se encuentra un número repetido
+      return;
     }
 
     this.results.push({
@@ -51,7 +58,6 @@ export class ProductosMediosPage {
       decimal: decimal
     });
 
-    // Continuar la generación solo si no hay repetición
     this.carga(seedX1, middle, dig, numeral + 1, stop);
   }
 

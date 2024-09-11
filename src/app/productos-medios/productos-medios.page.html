@@ -14,21 +14,42 @@
       <ion-col size="12">
         <ion-item>
           <ion-label position="floating">Semilla X0</ion-label>
-          <ion-input [(ngModel)]="seedX0" type="number" placeholder="Ingresa la semilla X0"></ion-input>
+          <ion-input [(ngModel)]="seedX0" 
+                     type="number" 
+                     placeholder="Ingresa la semilla X0" 
+                     required 
+                     pattern="^[0-9]*$" 
+                     minlength="2">
+          </ion-input>
+          <ion-text *ngIf="isSeedX0Invalid()" color="danger">
+            La semilla X0 debe ser un número entero y tener al menos 2 dígitos.
+          </ion-text>
         </ion-item>
       </ion-col>
 
       <ion-col size="12">
         <ion-item>
           <ion-label position="floating">Semilla X1</ion-label>
-          <ion-input [(ngModel)]="seedX1" type="number" placeholder="Ingresa la semilla X1"></ion-input>
+          <ion-input [(ngModel)]="seedX1" 
+                     type="number" 
+                     placeholder="Ingresa la semilla X1" 
+                     required 
+                     pattern="^[0-9]*$" 
+                     minlength="2">
+          </ion-input>
+          <ion-text *ngIf="isSeedX1Invalid()" color="danger">
+            La semilla X1 debe ser un número entero y tener al menos 2 dígitos.
+          </ion-text>
         </ion-item>
       </ion-col>
 
       <ion-col size="12">
         <ion-item>
           <ion-label position="floating">Cantidad de números a generar</ion-label>
-          <ion-input [(ngModel)]="numToGenerate" type="number" placeholder="Cantidad de números"></ion-input>
+          <ion-input [(ngModel)]="numToGenerate" 
+                     type="number" 
+                     placeholder="Cantidad de números">
+          </ion-input>
         </ion-item>
       </ion-col>
       
@@ -40,7 +61,8 @@
       </ion-col>
 
       <ion-col size="12">
-        <ion-button expand="block" (click)="generateNumbers()">Generar Números</ion-button>
+        <ion-button expand="block" (click)="generateNumbers()" 
+                    [disabled]="isSeedX0Invalid() || isSeedX1Invalid()">Generar Números</ion-button>
       </ion-col>
 
       <ion-col size="12">
@@ -55,7 +77,6 @@
                   {{result.decimal | number:'1.4-4'}}
                 </ng-template>
               </h2>
-
             </ion-label>
           </ion-item>
         </ion-list>

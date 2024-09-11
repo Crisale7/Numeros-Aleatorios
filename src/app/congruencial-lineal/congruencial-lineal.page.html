@@ -13,29 +13,41 @@
       <ion-row>
         <ion-col size="12">
           <ion-item>
-            <ion-label position="floating">Semilla X0</ion-label>
+            <ion-label position="floating">Semilla X0 (Debe ser un número entero positivo) :</ion-label>
             <ion-input [(ngModel)]="seedX0" type="number" placeholder="Ingresa la semilla X0"></ion-input>
+            <ion-text *ngIf="seedX0 !== undefined && seedX0 <= 0" color="danger">
+              La semilla debe ser un número entero positivo.
+            </ion-text>
           </ion-item>
         </ion-col>
 
         <ion-col size="12">
           <ion-item>
-            <ion-label position="floating">Constante multiplicativa (a)</ion-label>
+            <ion-label position="floating">Constante multiplicativa (a) (Debe ser un número entero positivo) :</ion-label>
             <ion-input [(ngModel)]="constantA" type="number" placeholder="Ingresa la constante a"></ion-input>
+            <ion-text *ngIf="constantA !== undefined && constantA <= 0" color="danger">
+              a debe ser un número entero positivo.
+            </ion-text>
           </ion-item>
         </ion-col>
 
         <ion-col size="12">
           <ion-item>
-            <ion-label position="floating">Constante aditiva (c)</ion-label>
+            <ion-label position="floating">Constante aditiva (c) (Debe ser un número entero positivo) :</ion-label>
             <ion-input [(ngModel)]="constantC" type="number" placeholder="Ingresa la constante c"></ion-input>
+            <ion-text *ngIf="constantC !== undefined && constantC <= 0" color="danger">
+              c debe ser un número entero positivo.
+            </ion-text>
           </ion-item>
         </ion-col>
 
         <ion-col size="12">
           <ion-item>
-            <ion-label position="floating">Módulo (m)</ion-label> <!-- Etiqueta corregida -->
+            <ion-label position="floating">Módulo (m) (Debe ser un número entero positivo) :</ion-label> <!-- Etiqueta corregida -->
             <ion-input [(ngModel)]="modM" type="number" placeholder="Ingresa el módulo m"></ion-input>
+            <ion-text *ngIf="modM !== undefined && modM <= 0" color="danger">
+              m debe ser un número entero positivo.
+            </ion-text>
           </ion-item>
         </ion-col>
 
@@ -43,6 +55,9 @@
           <ion-item>
             <ion-label position="floating">Cantidad de números a generar</ion-label>
             <ion-input [(ngModel)]="numToGenerate" type="number" placeholder="Cantidad de números"></ion-input>
+            <ion-text *ngIf="modM !== undefined && modM > 0" color="success">
+              <p>El periodo de vida máximo es: {{ modM }}</p>
+            </ion-text>
           </ion-item>
         </ion-col>
 

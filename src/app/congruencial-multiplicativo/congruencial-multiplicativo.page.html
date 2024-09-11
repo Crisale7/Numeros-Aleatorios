@@ -9,25 +9,43 @@
 
 <ion-content>
   <div class="container">
+    <!-- Semilla (X0) -->
     <ion-item>
-      <ion-label position="stacked">X0 (Semilla):</ion-label>
+      <ion-label position="stacked">X0 (Semilla, debe ser impar):</ion-label>
       <ion-input [(ngModel)]="seed" type="number" placeholder="Ingrese la semilla"></ion-input>
+      <ion-text *ngIf="seed !== undefined && seed % 2 === 0" color="danger">
+        La semilla debe ser un número impar.
+      </ion-text>
     </ion-item>
 
+
+    <!-- Valor de k -->
     <ion-item>
-      <ion-label position="stacked">k:</ion-label>
-      <ion-input [(ngModel)]="k" type="number" placeholder="Ingrese el valor de k"></ion-input>
+      <ion-label position="stacked">k (Debe ser un número positivo):</ion-label>
+      <ion-input [(ngModel)]="k" type="number" min="1" placeholder="Ingrese el valor de k"></ion-input>
+      <ion-text *ngIf="k !== undefined && k <= 0" color="danger">k debe ser un número positivo.</ion-text>
     </ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">g:</ion-label>
-      <ion-input [(ngModel)]="g" type="number" placeholder="Ingrese el valor de g"></ion-input>
-    </ion-item>
+    <!-- Valor de g -->
+<ion-item>
+  <ion-label position="stacked">g (Debe ser un número entero positivo):</ion-label>
+  <ion-input [(ngModel)]="g" type="number" placeholder="Ingrese el valor de g" (ionChange)="updateMaxLifePeriod()"></ion-input>
+  <ion-text *ngIf="g !== undefined && g <= 0" color="danger">
+    g debe ser un número entero positivo.
+  </ion-text>
+</ion-item>
 
-    <ion-item>
-      <ion-label position="stacked">Números a generar:</ion-label>
-      <ion-input [(ngModel)]="numToGenerate" type="number" placeholder="Ingrese la cantidad de números"></ion-input>
-    </ion-item>
+<!-- Números a generar -->
+<ion-item>
+  <ion-label position="stacked">Números a generar:</ion-label>
+  <ion-input [(ngModel)]="numToGenerate" [max]="maxLifePeriod" type="number" placeholder="Ingrese la cantidad de números"></ion-input>
+  <ion-text *ngIf="g !== undefined && maxLifePeriod > 0" color="success">
+    <p>El periodo de vida máximo es: {{ maxLifePeriod }}</p>
+  </ion-text>
+</ion-item>
+
+
+    
 
     <!-- Selección de la fórmula para 'a' -->
     <ion-item>
@@ -44,8 +62,10 @@
       <ion-toggle [(ngModel)]="showFullDecimals"></ion-toggle>
     </ion-item>
 
+    <!-- Botón para generar los números -->
     <ion-button expand="full" (click)="generateNumbers()">Generar números</ion-button>
 
+    <!-- Resultados -->
     <ion-list *ngIf="results.length > 0">
       <ion-item *ngFor="let result of results; let i = index">
         <h2>Número aleatorio {{ i + 1 }}: 

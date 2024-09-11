@@ -15,6 +15,16 @@ export class CuadradosMediosPage {
 
   constructor(private alertController: AlertController) {}
 
+
+  isSeedInvalid(): boolean {
+     // Verifica si la semilla es indefinida, no es un entero o si tiene menos de 2 dígitos
+    return (
+      this.seed === undefined || 
+      !Number.isInteger(this.seed) || 
+      this.seed.toString().length < 2
+    );
+  }
+
   generateNumbers() {
     if (this.seed === undefined || this.numToGenerate === undefined || this.numToGenerate <= 0) {
       this.showAlert('Por favor, ingresa una semilla válida y una cantidad positiva de números.');
